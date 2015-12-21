@@ -1,4 +1,4 @@
-package br.com.eber.financeiro.bean;
+package br.com.eber.financeiro.controller;
 
 import javax.faces.bean.ManagedBean;
 

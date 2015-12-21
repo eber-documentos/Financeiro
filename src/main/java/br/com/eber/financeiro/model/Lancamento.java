@@ -15,6 +15,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+import br.com.eber.financeiro.validation.DecimalPositivo;
 
 @Entity
 @Table(name = "lancamento")
@@ -26,16 +32,21 @@ public class Lancamento implements Serializable {
 	@GeneratedValue
 	private Long id;
 	
+	@NotNull
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "pessoa_id")
 	private Pessoa pessoa;
 	
+	@NotEmpty
+	@Size(max = 80)
 	@Column(length = 80, nullable = false)
 	private String descricao;
 	
+	@DecimalPositivo
 	@Column(precision = 10, scale = 2, nullable = false)
 	private BigDecimal valor;
 	
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	@Column(nullable =  false)
 	private TipoLancamento tipo;
